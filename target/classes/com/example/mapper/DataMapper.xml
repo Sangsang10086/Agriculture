@@ -1,0 +1,431 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.mapper.DataMapper">
+<!-- ######################################################################## buyer-->
+    <insert id="addUser">
+        insert into buyers(buyer_username,buyer_password,buyer_name,buyer_gender,buyer_phone,buyer_address,buyer_createTime)
+        values(#{buyer_username},#{buyer_password},#{buyer_name},#{buyer_gender},#{buyer_phone},#{buyer_address},#{buyer_createTime})
+    </insert>
+    <insert id="addSellerUser">
+        insert into sellers(seller_username,seller_password,seller_name,seller_gender,seller_phone,seller_address,seller_createTime)
+        values(#{seller_username},#{seller_password},#{seller_name},#{seller_gender},#{seller_phone},#{seller_address},#{seller_createTime})
+    </insert>
+    <insert id="addShopCart">
+        insert into shopping_cart(cart_num,cart_address,cart_proId,cart_buyerId)
+        values(#{num},#{address},#{id},#{buyerId})
+    </insert>
+    <insert id="addressaddTimenum">
+        insert into shopping_cart(cart_num,cart_address,cart_addTime)
+        values(#{proNum},#{address},#{addTime})
+    </insert>
+    <insert id="addSellerPro">
+        insert into agricultural_products(pro_name,pro_money,pro_size,pro_storeId,pro_detail,pro_img,pro_seller_id,pro_indate)
+        values(#{reqFile.proName},#{reqFile.proPrice},#{reqFile.proNum},#{storeId},#{reqFile.proDetail},#{reqFile.file},#{reqFile.sellerId},#{reqFile.proIndate})
+    </insert>
+    <insert id="AddOrder">
+        insert into orders(order_pro_arg_id,order_store_id,order_buyer_id,order_pro_size,order_createTime,order_proPay,order_status)
+        values (#{proId},#{storeId},#{buyerId},#{item.num},#{item.createdDate},#{totalPrice},#{orderStatus})
+    </insert>
+    <insert id="SellerAddStore">
+        insert into stores(store_name,store_seller_id,store_createTime)
+        values(#{storeName},#{id},#{storeCreateTime})
+    </insert>
+    <update id="addcartData">
+        update shopping_cart
+        <set>
+            <if test="sellerId != null">
+                cart_sellerId = #{sellerId}
+            </if>
+            <if test="buyerId != null">
+                and cart_buyerId = #{buyerId}
+            </if>
+            <if test="proId != null">
+                and cart_proId = #{proId}
+            </if>
+            <if test="storeId != null">
+                and cart_storeId = #{storeId}
+            </if>
+        </set>
+        where cart_id = #{cartId}
+    </update>
+
+    <update id="updateUser">
+        update buyers
+        <set>
+            <if test="buyer_password != null and buyer_password != ''">
+                buyer_password = #{buyer_password},
+            </if>
+            <if test="buyer_name != null and buyer_name != ''">
+                buyer_name = #{buyer_name},
+            </if>
+            <if test="buyer_username != null and buyer_username != ''">
+                buyer_username = #{buyer_username},
+            </if>
+            <if test="buyer_gender != null and buyer_gender != ''">
+                buyer_gender = #{buyer_gender},
+            </if>
+            <if test="buyer_phone != null and buyer_phone != ''">
+                buyer_phone = #{buyer_phone},
+            </if>
+            <if test="buyer_address != null and buyer_address != ''">
+                buyer_address = #{buyer_address},
+            </if>
+            <if test="buyer_updateTime != null">
+                buyer_updateTime = #{buyer_updateTime}
+            </if>
+        </set>
+        where buyer_username = #{buyer_username}
+    </update>
+    <update id="updateSellerUser">
+        update sellers
+        <set>
+            <if test="seller_password != null and seller_password != ''">
+                seller_password = #{seller_password},
+            </if>
+            <if test="seller_name != null and seller_name != ''">
+                seller_name = #{seller_name},
+            </if>
+            <if test="seller_username != null and seller_username != ''">
+                seller_username = #{seller_username},
+            </if>
+            <if test="seller_gender != null and seller_gender != ''">
+                seller_gender = #{seller_gender},
+            </if>
+            <if test="seller_phone != null and seller_phone != ''">
+                seller_phone = #{seller_phone},
+            </if>
+            <if test="seller_address != null and seller_address != ''">
+                seller_address = #{seller_address},
+            </if>
+            <if test="seller_updateTime != null">
+                seller_updateTime = #{seller_updateTime}
+            </if>
+        </set>
+        where seller_username = #{seller_username}
+    </update>
+    <update id="postBuyerPerson">
+        update buyers
+        <set>
+            <if test="password != null and password != ''">
+                buyer_password = #{password},
+            </if>
+            <if test="name != null and name != ''">
+                buyer_name = #{name},
+            </if>
+            <if test="username != null and username != ''">
+                buyer_username = #{username},
+            </if>
+            <if test="gender != null and gender != ''">
+                buyer_gender = #{gender},
+            </if>
+            <if test="phone != null and phone != ''">
+                buyer_phone = #{phone},
+            </if>
+            <if test="address != null and address != ''">
+                buyer_address = #{address},
+            </if>
+            <if test="updateTime != null">
+                buyer_updateTime = #{updateTime}
+            </if>
+            <if test="data != null">
+                buyer_birth = #{data}
+            </if>
+        </set>
+        where buyer_username = #{username}
+    </update>
+    <update id="handleNumChange">
+        update shopping_cart
+        <set>
+            <if test="num != null">
+                cart_num = #{num}
+            </if>
+        </set>
+        where cart_id = #{id}
+    </update>
+    <delete id="deleteByUsername">
+        delete from buyers where buyer_username = #{username}
+    </delete>
+    <delete id="deleteSellerByUsername">
+        delete from sellers where seller_username = #{username}
+    </delete>
+
+
+    <select id="list" resultType="com.example.pojo.buyer.BuyersDTO">
+        select
+        buyer_createTime as data,
+        buyer_username as username,
+        buyer_name as name,
+        buyer_phone as phone,
+        buyer_address as address
+        from buyers as b
+        <where>
+            <if test="name != null and name != ''">
+                b.buyer_username like concat('%',#{name},'%')
+            </if>
+            <if test="begin != null and end != null">
+                and b.buyer_createTime between #{begin} and #{end}
+            </if>
+        </where>
+    </select>
+    <select id="getTotal" resultType="java.lang.String">
+        select count(*) from buyers
+    </select>
+    <select id="getUserByUsername" resultType="com.example.pojo.buyer.ResultBuyers">
+        select
+        buyer_username as buyerUsername,
+        buyer_name as buyerName,
+        buyer_password as buyerPassword,
+        buyer_gender as buyerGender,
+        buyer_phone as buyerPhone,
+        buyer_address as buyerAddress
+        from buyers
+        where buyer_username = #{username}
+    </select>
+
+
+<!--     ###############################################################################   seller-->
+
+    <select id="Sellerlist" resultType="com.example.pojo.seller.SellersDTO">
+        select
+        seller_createTime as data,
+        seller_username as username,
+        seller_name as name,
+        seller_phone as phone,
+        seller_address as address
+        from sellers as s
+        <where>
+            <if test="username != null and username != ''">
+                s.seller_username like concat('%',#{name},'%')
+            </if>
+            <if test="begin != null and end != null">
+                and c.seller_createTime between #{begin} and #{end}
+            </if>
+        </where>
+    </select>
+    <select id="getSellerUserByUsername" resultType="com.example.pojo.seller.ResultSellers">
+        select
+        seller_username as sellerUsername,
+        seller_name as sellerName,
+        seller_password as sellerPassword,
+        seller_gender as sellerGender,
+        seller_phone as sellerPhone,
+        seller_address as sellerAddress
+        from sellers
+        where seller_username = #{username}
+    </select>
+    <select id="getBuyPer" resultType="com.example.pojo.buyer.BuyPerResponse">
+        select
+        buyer_username as username,
+        buyer_name as name,
+        buyer_phone as phone,
+        buyer_address as address,
+        buyer_gender as gender,
+        buyer_birth as data
+        from buyers
+        where buyer_id = #{id}
+    </select>
+    <select id="getCategory" resultType="java.lang.String">
+        select pro_sort from agricultural_products
+    </select>
+    <select id="getProducts" resultType="com.example.pojo.product.Products">
+        select
+        a.pro_agr_id as id,
+        a.pro_img as image,
+        a.pro_detail as text,
+        a.pro_money as price,
+        a.pro_sellNum as num,
+        s.store_name as storeName
+        from agricultural_products a left join stores s on a.pro_storeId=s.store_id
+        <where>
+            <if test="category != null and category != ''">
+                a.pro_sort = #{category}
+            </if>
+            <if test="input != null and input != ''">
+                and a.pro_detail like concat('%',#{input},'%')
+            </if>
+        </where>
+
+    </select>
+    <select id="getCartData" resultType="com.example.pojo.product.ResCartCard">
+        select
+        cart_id as id,
+        store_name as storeName,
+        pro_img as img,
+        pro_detail as detail,
+        pro_money as price,
+        cart_num as num
+        from shopping_cart left join agricultural_products on pro_agr_id=cart_proId
+        left join stores on shopping_cart.cart_storeId=stores.store_id
+        where shopping_cart.cart_buyerId = #{id}
+    </select>
+    <select id="getCartId" resultType="java.lang.Integer">
+        SELECT LAST_INSERT_ID()
+    </select>
+    <select id="cartList" resultType="com.example.pojo.cart.Resshopcart">
+        select
+        shop.cart_id as id,
+        s.store_name as storeName,
+        agr.pro_name as proName,
+        b.buyer_username as buyerName,
+        se.seller_username as sellerName,
+        shop.cart_addTime as data,
+        shop.cart_address as address
+        from shopping_cart shop left join agricultural_products agr on shop.cart_proId= agr.pro_agr_id
+        left join stores s on agr.pro_storeId = s.store_id
+        left join buyers b on b.buyer_id=shop.cart_buyerId
+        left join sellers se on se.seller_id= shop.cart_sellerId
+        <where>
+            <if test="name != null and name != ''">
+                agr.pro_detail like concat('%',#{name},'%')
+            </if>
+            <if test="begin != null and end != null">
+                and shop.cart_addTime between #{begin} and #{end}
+            </if>
+        </where>
+    </select>
+    <select id="getStoreId" resultType="java.lang.Integer">
+        select store_id from stores where store_name = #{storeName}
+    </select>
+    <select id="getSellerId" resultType="java.lang.Integer">
+        select seller_id from sellers where seller_name = #{sellerName}
+    </select>
+    <select id="getBuyerId" resultType="java.lang.Integer">
+        select buyer_id from buyers where buyer_name = #{buyerName}
+    </select>
+    <select id="getProId" resultType="java.lang.Integer">
+        select pro_agr_id from agricultural_products where pro_name = #{proName}
+    </select>
+    <select id="storeList" resultType="com.example.pojo.store.Resstore">
+        select store_id as id ,store_name as storeName
+        from stores
+        <where>
+            <if test="name != null and name != ''">
+                store_name like concat('%',#{name},'%')
+            </if>
+            <if test="begin != null and end != null">
+                and store_createTime between #{begin} and #{end}
+            </if>
+            <if test="id != 10086">
+                and store_seller_id = #{id}
+            </if>
+
+        </where>
+    </select>
+    <select id="selleProList" resultType="com.example.pojo.seller.ResSellerPro">
+        select
+        pro_agr_id as id,
+        pro_img as img,
+        pro_name as storeName,
+        pro_sort as storeSort,
+        pro_money as storeMoney,
+        pro_indate as storeIndate,
+        pro_detail as storeDetail,
+        pro_size as storeSize,
+        pro_sellNum as storeSellNum,
+        stores.store_name as storeStore
+        from agricultural_products left join stores on pro_storeId=store_id
+        <where>
+            <if test="name != null and name != ''">
+                pro_detail like concat('%',#{name},'%')
+            </if>
+            <if test="begin != null and end != null">
+                and pro_indate between #{begin} and #{end}
+            </if>
+            <if test="id != 10086">
+                and pro_seller_id = #{id}
+            </if>
+        </where>
+    </select>
+    <select id="getviewSelled" resultType="com.example.pojo.seller.ResviewSelled">
+        select
+        pro_name as name,
+        pro_sellNum as value
+        from agricultural_products
+        <where>
+            <if test="id != manager">
+                pro_seller_id = #{id}
+            </if>
+        </where>
+    </select>
+    <select id="getSellerPerson" resultType="com.example.pojo.seller.ResPerson">
+        select
+        seller_username as username,
+        seller_name as name,
+        seller_phone as phone,
+        seller_address as address
+        from sellers
+        where seller_id = #{id}
+    </select>
+    <select id="selectstoreId" resultType="java.lang.String">
+        select store_id from stores where store_name = #{proStore}
+    </select>
+    <select id="backSellerFetchStore" resultType="java.lang.String">
+        select store_name from stores where store_seller_id = #{id}
+    </select>
+    <select id="orderGetData" resultType="com.example.pojo.order.OrderDTO">
+        select
+        orders.order_id as orderId,
+        agricultural_products.pro_name as proName,
+        agricultural_products.pro_money as proPrice,
+        orders.order_pro_size as proNum,
+        orders.order_proPay as proPay,
+        orders.order_status as proStatus
+
+        from orders left join agricultural_products on pro_agr_id=order_pro_arg_id
+        <where>
+            <if test="name != null and name != ''">
+                agricultural_products.pro_name like concat('%',#{name},'%')
+            </if>
+            <if test="begin != null and end != null">
+                and agricultural_products.order_createTime between #{begin} and #{end}
+            </if>
+            <if test="id != 10086">
+                and orders.order_buyer_id = #{id}
+            </if>
+        </where>
+    </select>
+    <select id="getSumCartProId" resultType="java.lang.Integer">
+        select
+        cart_proId
+        from shopping_cart
+        where cart_buyerId = #{buyerId}
+    </select>
+    <select id="getProName" resultType="java.lang.String">
+        select
+        pro_name
+
+        from agricultural_products
+        where pro_agr_id =#{proId}
+    </select>
+    <select id="getPrice" resultType="java.lang.String">
+        select
+        pro_money
+
+        from agricultural_products
+        where pro_agr_id =#{proId}
+    </select>
+    <select id="getStoreIdBystoreId" resultType="java.lang.Integer">
+        select store_id from stores where store_name = #{storeName}
+    </select>
+    <select id="managerPage" resultType="com.example.pojo.manager.ResManagerGetData">
+        select
+        manager_id as id,
+        manager_username as username,
+        phone as phone,
+        address as address,
+        createTime as createTime
+        from managers
+        <where>
+            <if test="name != null and name != ''">
+                username like concat('%',#{name},'%')
+            </if>
+            <if test="begin != null and end != null">
+                and createTime between #{begin} and #{end}
+            </if>
+        </where>
+    </select>
+
+
+</mapper>

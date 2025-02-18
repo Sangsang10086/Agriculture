@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.mapper.LoginMapper">
+    <insert id="register" >
+        insert into buyers(buyer_username,buyer_password) values(#{username},#{password})
+    </insert>
+    <insert id="sellerRegister">
+        insert into sellers(seller_username,seller_password) values(#{username},#{password})
+    </insert>
+    <update id="changePW">
+        update managers
+        set manager_password = #{newPassword}
+        where manager_password =#{oldPassword} and manager_username=#{username}
+    </update>
+    <select id="getIdByUsernameAndPassword" resultType="java.lang.Integer">
+        select buyer_id from buyers where buyer_username = #{loginRequest.username} and buyer_password = #{loginRequest.password}
+    </select>
+    <select id="getsellerIdByUsernameAndPassword" resultType="java.lang.Integer">
+        select seller_id from sellers where seller_username = #{username} and seller_password = #{password}
+    </select>
+    <select id="getmanagerIdByUsernameAndPassword" resultType="java.lang.Integer">
+        select * from managers where manager_username = #{username} and manager_password = #{password}
+    </select>
+    <select id="selectPW" resultType="java.lang.String">
+        select manager_password from managers where manager_username =#{username}
+    </select>
+
+
+</mapper>

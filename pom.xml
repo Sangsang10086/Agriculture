@@ -79,6 +79,7 @@
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-databind</artifactId>
+            <version>2.18.2</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -90,12 +91,23 @@
             <artifactId>alipay-sdk-java</artifactId>
             <version>4.9.28.ALL</version>
         </dependency>
-
+        <dependency>
+            <groupId>com.baomidou</groupId>
+            <artifactId>mybatis-plus-boot-starter</artifactId>
+            <version>3.5.3</version>
+        </dependency>
         <dependency>
             <groupId>com.sun.xml.bind</groupId>
             <artifactId>jaxb-core</artifactId>
             <version>2.3.0</version>
         </dependency>
+        <!-- 支付宝 SDK -->
+        <dependency>
+            <groupId>com.alipay.sdk</groupId>
+            <artifactId>alipay-sdk-java</artifactId>
+            <version>4.9.28.ALL</version>
+        </dependency>
+
         <dependency>
             <groupId>javax.activation</groupId>
             <artifactId>activation</artifactId>
@@ -148,7 +160,53 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web-services</artifactId>
         </dependency>
+        <dependency>
+            <groupId>javax.annotation</groupId>
+            <artifactId>javax.annotation-api</artifactId>
+            <version>1.3.2</version>
+        </dependency>
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+            <version>4.0.1</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>cn.hutool</groupId>
+            <artifactId>hutool-all</artifactId>
+            <version>5.8.11</version> <!-- 请使用最新版本 -->
+        </dependency>
+
+
+
+
+
+
+
     </dependencies>
+    <repositories>
+    <!-- 阿里云 Maven 仓库 -->
+    <repository>
+        <id>aliyunmaven</id>
+        <url>https://maven.aliyun.com/repository/public</url>
+    </repository>
+    <!-- Maven 中央仓库 -->
+    <repository>
+        <id>central</id>
+        <url>https://repo.maven.apache.org/maven2</url>
+        <releases>
+            <enabled>true</enabled>
+        </releases>
+        <snapshots>
+            <enabled>false</enabled>
+        </snapshots>
+    </repository>
+    <!-- 华为云 Maven 仓库 -->
+    <repository>
+        <id>cncmaven</id>
+        <url>https://repo.huaweicloud.com/repository/maven/</url>
+    </repository>
+</repositories>
 
     <build>
         <plugins>

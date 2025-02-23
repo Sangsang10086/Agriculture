@@ -33,8 +33,7 @@ public class DataServiceImpl implements DataService {
     @Autowired
     private DataMapper dataMapper;
 
-    @Autowired
-    private RedisTemplate<String, Object> redisTemplate;
+
 
     @Autowired
     private PageHelperStandardProperties pageHelperStandardProperties;
@@ -220,26 +219,14 @@ public class DataServiceImpl implements DataService {
         // 1. 设置分页参数
         PageHelper.startPage(buyerQureyParam.getPageNum(), buyerQureyParam.getPageSize());
 
-        // 2. 构建 Redis 缓存键
-        String key = "seller:" + buyerQureyParam.getId();
 
-        // 3. 从 Redis 中获取缓存的分页数据
-        PageResult cachedPageResult = (PageResult) redisTemplate.opsForValue().get(key);
 
-        if (cachedPageResult == null) {
-            // 4. 如果缓存中没有数据，则从数据库中查询
-            List<ResSellerPro> resSellerPros = dataMapper.selleProList(buyerQureyParam);
-            Page<ResSellerPro> page = (Page<ResSellerPro>) resSellerPros;
-
-            // 5. 封装分页结果
-            cachedPageResult = new PageResult(page.getTotal(), page.getResult());
-
-            // 6. 将查询结果缓存到 Redis 中
-            redisTemplate.opsForValue().set(key, cachedPageResult, 60, TimeUnit.MINUTES);
-        }
+        // 4. 如果缓存中没有数据，则从数据库中查询
+        List<ResSellerPro> resSellerPros = dataMapper.selleProList(buyerQureyParam);
+        Page<ResSellerPro> page = (Page<ResSellerPro>) resSellerPros;
 
         // 7. 返回分页结果
-        return cachedPageResult;
+        return new PageResult(page.getTotal(), page.getResult());
     }
 
 

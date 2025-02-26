@@ -12,6 +12,7 @@ import com.example.pojo.product.Products;
 import com.example.pojo.product.ResCartCard;
 import com.example.pojo.seller.*;
 import com.example.pojo.store.Resstore;
+import com.example.service.CacheService;
 import com.example.service.DataService;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
@@ -23,6 +24,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -33,7 +35,8 @@ public class DataServiceImpl implements DataService {
     @Autowired
     private DataMapper dataMapper;
 
-
+    @Autowired
+    private CacheService<List<ResSellerPro>> cacheService;
 
     @Autowired
     private PageHelperStandardProperties pageHelperStandardProperties;
@@ -218,13 +221,18 @@ public class DataServiceImpl implements DataService {
     public PageResult sellerProPage(BuyerQureyParam buyerQureyParam) {
         // 1. 设置分页参数
         PageHelper.startPage(buyerQureyParam.getPageNum(), buyerQureyParam.getPageSize());
-
-
-
-        // 4. 如果缓存中没有数据，则从数据库中查询
-        List<ResSellerPro> resSellerPros = dataMapper.selleProList(buyerQureyParam);
+        //2.设置key
+        Integer id = buyerQureyParam.getId();
+        String key = "sellerProPage:" + id;
+        //3.获取缓存数据
+        List<ResSellerPro> resSellerPros = null;
+        if (cacheService.get(key)!=null){
+            resSellerPros = cacheService.get(key);
+        }else {
+            resSellerPros = dataMapper.selleProList(buyerQureyParam);
+            cacheService.save(key,resSellerPros,1, TimeUnit.MINUTES);
+        }
         Page<ResSellerPro> page = (Page<ResSellerPro>) resSellerPros;
-
         // 7. 返回分页结果
         return new PageResult(page.getTotal(), page.getResult());
     }

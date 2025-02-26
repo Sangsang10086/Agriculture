@@ -144,6 +144,11 @@
         </set>
         where cart_id = #{id}
     </update>
+    <update id="updateOrderStatus">
+        update orders
+        set order_status = #{orderStatus}
+        where order_id = #{outTradeNo}
+    </update>
     <delete id="deleteByUsername">
         delete from buyers where buyer_username = #{username}
     </delete>
@@ -425,6 +430,12 @@
                 and createTime between #{begin} and #{end}
             </if>
         </where>
+    </select>
+    <select id="getOrderById" resultType="java.lang.String">
+        select
+        order_status
+        from orders
+        where order_id = #{orderId}
     </select>
 
 

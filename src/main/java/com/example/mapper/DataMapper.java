@@ -102,4 +102,8 @@ public interface DataMapper {
     List<ResManagerGetData> managerPage(BuyerQureyParam buyerQureyParam);
 
     void SellerAddStore(ReqSellerAddStore reqSellerAddStore);
+
+    void updateOrderStatus(String outTradeNo, String orderStatus);
+
+    String getOrderById(long orderId);
 }

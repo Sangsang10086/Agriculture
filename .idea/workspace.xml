@@ -4,14 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b6c436e2-013e-4242-ad5c-e9ebc7e29cbf" name="更改" comment="增加支付沙箱">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/configs/RedisConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/service/CacheService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/service/impl/RedisCacheService.java" afterDir="false" />
+    <list default="true" id="b6c436e2-013e-4242-ad5c-e9ebc7e29cbf" name="更改" comment="增加redis">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/service/impl/DataServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/service/impl/DataServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/AgricultureApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/AgricultureApplication.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/service/impl/DataServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/service/impl/DataServiceImpl.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -143,7 +142,7 @@
       <workItem from="1740298979657" duration="1328000" />
       <workItem from="1740302338837" duration="1258000" />
       <workItem from="1740371706217" duration="6596000" />
-      <workItem from="1740530780174" duration="424000" />
+      <workItem from="1740530780174" duration="1890000" />
     </task>
     <task id="LOCAL-00001" summary="引入依赖">
       <option name="closed" value="true" />
@@ -169,7 +168,15 @@
       <option name="project" value="LOCAL" />
       <updated>1740302379204</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="增加redis">
+      <option name="closed" value="true" />
+      <created>1740531225488</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1740531225488</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -179,7 +186,8 @@
     <MESSAGE value="引入依赖" />
     <MESSAGE value="增加支付沙箱" />
     <MESSAGE value="支付成功之后返回订单管理页面" />
-    <option name="LAST_COMMIT_MESSAGE" value="支付成功之后返回订单管理页面" />
+    <MESSAGE value="增加redis" />
+    <option name="LAST_COMMIT_MESSAGE" value="增加redis" />
   </component>
   <component name="XDebuggerManager">
     <pin-to-top-manager>

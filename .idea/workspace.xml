@@ -4,20 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b6c436e2-013e-4242-ad5c-e9ebc7e29cbf" name="更改" comment="mybatis和mybatis-plus版本控制">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/service/OrderService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/service/impl/OrderServiceImpl.java" afterDir="false" />
+    <list default="true" id="b6c436e2-013e-4242-ad5c-e9ebc7e29cbf" name="更改" comment="支付宝支付后异步回调">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/logs/application.log" beforeDir="false" afterPath="$PROJECT_DIR$/logs/application.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/controller/AlipayController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/controller/AlipayController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/mapper/DataMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/mapper/DataMapper.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/mapper/DataMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/mapper/DataMapper.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/controller/AliPayController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/controller/AliPayController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/mapper/DataMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/mapper/DataMapper.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/mapper/DataMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/mapper/DataMapper.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -36,6 +26,18 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;Sangsang10086&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/Sangsang10086/Agriculture.git&quot;,
+    &quot;accountId&quot;: &quot;ce8d2d1a-5ff8-4147-9335-f857a6a41e90&quot;
+  }
+}</component>
   <component name="MavenImportPreferences">
     <option name="generalSettings">
       <MavenGeneralSettings>
@@ -80,7 +82,7 @@
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "reference.settings.project.maven.repository.indices",
+    "settings.editor.selected.configurable": "configurable.group.build",
     "vue.rearranger.settings.migration": "true"
   },
   "keyToStringList": {
@@ -151,7 +153,9 @@
       <workItem from="1740371706217" duration="6596000" />
       <workItem from="1740530780174" duration="2075000" />
       <workItem from="1740536113422" duration="7434000" />
-      <workItem from="1740552551670" duration="8182000" />
+      <workItem from="1740552551670" duration="11107000" />
+      <workItem from="1740704709098" duration="5038000" />
+      <workItem from="1740962950155" duration="4362000" />
     </task>
     <task id="LOCAL-00001" summary="引入依赖">
       <option name="closed" value="true" />
@@ -193,7 +197,15 @@
       <option name="project" value="LOCAL" />
       <updated>1740532844298</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="支付宝支付后异步回调">
+      <option name="closed" value="true" />
+      <created>1740561521727</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1740561521727</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -206,19 +218,11 @@
     <MESSAGE value="增加redis" />
     <MESSAGE value="mybatis和mybatis-plus版本控制" />
     <MESSAGE value="git配置文件&#10;&#10;git配置文件" />
-    <option name="LAST_COMMIT_MESSAGE" value="git配置文件&#10;&#10;git配置文件" />
+    <MESSAGE value="支付宝支付后异步回调" />
+    <option name="LAST_COMMIT_MESSAGE" value="支付宝支付后异步回调" />
     <option name="LAST_CHUNK_COMMIT_MESSAGE" value="git配置文件&#10;&#10;git配置文件" />
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/example/controller/AlipayController.java</url>
-          <line>101</line>
-          <option name="timeStamp" value="7" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
     <pin-to-top-manager>
       <pinned-members>
         <PinnedItemInfo parentTag="com.example.pojo.cart.ReqSumCartW" memberName="reqSumCart" />

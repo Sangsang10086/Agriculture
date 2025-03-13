@@ -55,6 +55,9 @@ npm run dev
 ![image](https://github.com/user-attachments/assets/80afebc1-250d-427b-9c8d-9243ced80d1b) 
 注册卖家：
 ![image](https://github.com/user-attachments/assets/d2abf9a8-39e3-4288-bec8-41f996d0efed) 
+支付沙箱：
+![image](https://github.com/user-attachments/assets/2053cb04-7a60-4e9b-9596-84a24668eac9)
+
  
  后台： *（使用管理员账号登录） 
  首页：
